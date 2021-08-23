@@ -1,0 +1,129 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: d7507de5dde1cd3d1353e91ac7bd58d5482533f27323171889c31537baddb306
+
+name:           just-json-server
+version:        0.1.0.0-alpha
+description:    Please see the README on GitHub at <https://github.com/githubuser/just-json-server#readme>
+homepage:       https://github.com/chauchakching/just-json-server#readme
+bug-reports:    https://github.com/chauchakching/just-json-server/issues
+author:         chauchakching
+maintainer:     example@example.com
+copyright:      2019 Author name here
+license:        MIT
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/chauchakching/just-json-server
+
+library
+  exposed-modules:
+      JustJsonServer
+      MyUtil
+  other-modules:
+      Paths_just_json_server
+  hs-source-dirs:
+      src
+  default-extensions: EmptyCase FlexibleContexts FlexibleInstances InstanceSigs MultiParamTypeClasses LambdaCase MultiWayIf NamedFieldPuns TupleSections DeriveFoldable DeriveFunctor DeriveGeneric DeriveLift DeriveTraversable DerivingStrategies GeneralizedNewtypeDeriving StandaloneDeriving BangPatterns KindSignatures TypeOperators OverloadedStrings ScopedTypeVariables TypeApplications ConstraintKinds RankNTypes ApplicativeDo DefaultSignatures PatternSynonyms ExistentialQuantification FunctionalDependencies GADTs DataKinds TypeFamilies TypeFamilyDependencies QuasiQuotes TemplateHaskell DeriveDataTypeable
+  build-depends:
+      QuickCheck
+    , aeson
+    , aeson-pretty
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , directory
+    , filepath
+    , hspec
+    , http-types
+    , lens
+    , lens-aeson
+    , optparse-applicative
+    , pretty-show
+    , rio
+    , tasty
+    , tasty-hunit
+    , text
+    , unordered-containers
+    , wai
+    , wai-logger
+    , warp
+  default-language: Haskell2010
+
+executable just-json-server
+  main-is: Main.hs
+  other-modules:
+      Paths_just_json_server
+  hs-source-dirs:
+      app
+  default-extensions: EmptyCase FlexibleContexts FlexibleInstances InstanceSigs MultiParamTypeClasses LambdaCase MultiWayIf NamedFieldPuns TupleSections DeriveFoldable DeriveFunctor DeriveGeneric DeriveLift DeriveTraversable DerivingStrategies GeneralizedNewtypeDeriving StandaloneDeriving BangPatterns KindSignatures TypeOperators OverloadedStrings ScopedTypeVariables TypeApplications ConstraintKinds RankNTypes ApplicativeDo DefaultSignatures PatternSynonyms ExistentialQuantification FunctionalDependencies GADTs DataKinds TypeFamilies TypeFamilyDependencies QuasiQuotes TemplateHaskell DeriveDataTypeable
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      QuickCheck
+    , aeson
+    , aeson-pretty
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , directory
+    , filepath
+    , hspec
+    , http-types
+    , just-json-server
+    , lens
+    , lens-aeson
+    , optparse-applicative
+    , pretty-show
+    , rio
+    , tasty
+    , tasty-hunit
+    , text
+    , unordered-containers
+    , wai
+    , wai-logger
+    , warp
+  default-language: Haskell2010
+
+test-suite just-json-server-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_just_json_server
+  hs-source-dirs:
+      test
+  default-extensions: EmptyCase FlexibleContexts FlexibleInstances InstanceSigs MultiParamTypeClasses LambdaCase MultiWayIf NamedFieldPuns TupleSections DeriveFoldable DeriveFunctor DeriveGeneric DeriveLift DeriveTraversable DerivingStrategies GeneralizedNewtypeDeriving StandaloneDeriving BangPatterns KindSignatures TypeOperators OverloadedStrings ScopedTypeVariables TypeApplications ConstraintKinds RankNTypes ApplicativeDo DefaultSignatures PatternSynonyms ExistentialQuantification FunctionalDependencies GADTs DataKinds TypeFamilies TypeFamilyDependencies QuasiQuotes TemplateHaskell DeriveDataTypeable
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      QuickCheck
+    , aeson
+    , aeson-pretty
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , directory
+    , filepath
+    , hspec
+    , http-types
+    , just-json-server
+    , lens
+    , lens-aeson
+    , optparse-applicative
+    , pretty-show
+    , rio
+    , tasty
+    , tasty-hunit
+    , text
+    , unordered-containers
+    , wai
+    , wai-logger
+    , warp
+  default-language: Haskell2010

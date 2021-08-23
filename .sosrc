@@ -1,0 +1,7 @@
+- patterns:
+  - .*\.hs$
+  - ^my-thing.cabal$
+  - ^stack.yaml$
+  commands:
+  - stack build --fast
+  - stack exec just-json-server-exe db.json

@@ -1,0 +1,109 @@
+name: "CI"
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  release:
+    types: [ "published" ]
+
+defaults:
+  run:
+    shell: "bash"
+
+env:
+  CI_RELEASE: "${{ startsWith(github.ref, 'refs/tags/') }}"
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false # do not cancel builds for other OSes if one fails
+      matrix:
+        # If upgrading Ubuntu, also upgrade it in the lint job below
+        os: [ "ubuntu-18.04", "macOS-10.15", "windows-2016" ]
+
+    runs-on: "${{ matrix.os }}"
+
+    steps:
+      - uses: "actions/checkout@v2"
+
+      - uses: "actions/setup-node@v1"
+        with:
+          node-version: "10"
+
+      - id: "haskell"
+        uses: "haskell/actions/setup@v1"
+        with:
+          enable-stack: true
+          # If upgrading Stack, also upgrade it in the lint job below
+          stack-version: "2.7.1"
+          stack-no-global: true
+
+      - uses: "actions/cache@v2"
+        with:
+          path: |
+            ${{ steps.haskell.outputs.stack-root }}
+          key: "${{ runner.os }}-${{ hashFiles('stack.yaml') }}"
+
+      - name: "(Windows only) Configure Stack to store its programs in STACK_ROOT"
+        # This ensures that the local GHC and MSYS binaries that Stack installs
+        # are included in the cache. (This behavior is the default on
+        # non-Windows OSes.)
+        if: "${{ runner.os == 'Windows' }}"
+        run: |
+          mkdir -p "$STACK_ROOT"
+          echo "local-programs-path: $STACK_ROOT/programs" > $STACK_ROOT/config.yaml
+
+      - name: "Build"
+        run: |
+          os_name="${{ runner.os }}"
+          case "$os_name" in
+            Linux)
+              bundle_os=linux64;;
+            macOS)
+              bundle_os=macos;;
+            Windows)
+              bundle_os=win64;;
+            *)
+              echo "Unknown OS name: $os_name"
+              exit 1;;
+          esac
+          ci/build.sh "$bundle_os"
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: "${{ env.CI_RELEASE == 'true' }}"
+        with:
+          files: "sdist-test/built-bin/*"
+
+  lint:
+    runs-on: "ubuntu-18.04"
+
+    steps:
+      - uses: "actions/checkout@v2"
+
+      - id: "haskell"
+        uses: "haskell/actions/setup@v1"
+        with:
+          enable-stack: true
+          stack-version: "2.7.1"
+          stack-no-global: true
+
+      - uses: "actions/cache@v2"
+        with:
+          path: |
+            ${{ steps.haskell.outputs.stack-root }}
+          key: "${{ runner.os }}-lint-${{ hashFiles('stack.yaml') }}"
+
+      - run: "ci/run-hlint.sh --git"
+        env:
+          VERSION: "2.2.11"
+
+      - run: "stack --no-terminal --jobs=2 build --fast --ghc-options -fwrite-ide-info"
+
+      # Now do it again, with the test suite included. We don't want a
+      # reference from our test suite to count in the above check; the fact
+      # that a function is tested is not evidence that it's needed. But we also
+      # don't want to leave weeds lying around in our test suite either.
+      - run: "stack --no-terminal --jobs=2 build --fast --test --no-run-tests --ghc-options -fwrite-ide-info"

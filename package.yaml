@@ -1,0 +1,112 @@
+library:
+  source-dirs: src
+tests:
+  just-json-server-test:
+    source-dirs: test
+    main: Spec.hs
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - just-json-server
+      
+copyright: 2019 Author name here
+maintainer: example@example.com
+dependencies:
+  - base >= 4.7 && < 5
+  - text
+  - aeson
+  - warp
+  - wai-logger
+  - pretty-show
+  - optparse-applicative
+  - QuickCheck
+  - hspec
+  - containers
+  - directory
+  - filepath
+  - bytestring
+  - optparse-applicative
+  - wai
+  - http-types
+  - unordered-containers
+  - rio
+  - tasty
+  - tasty-hunit
+  - aeson-pretty
+  
+default-extensions:
+  # Trivial lifting of standards-imposed limitations
+  - EmptyCase
+  - FlexibleContexts
+  - FlexibleInstances
+  - InstanceSigs
+  - MultiParamTypeClasses
+  # Syntactic conveniences
+  - LambdaCase
+  - MultiWayIf
+  - NamedFieldPuns
+  - TupleSections
+  # Extensions to the deriving mechanism
+  - DeriveFoldable
+  - DeriveFunctor
+  - DeriveGeneric
+  - DeriveLift
+  - DeriveTraversable
+  - DerivingStrategies
+  - GeneralizedNewtypeDeriving
+  - StandaloneDeriving
+  # Lightweight syntactic adjustments
+  - BangPatterns
+  - KindSignatures
+  - TypeOperators
+  # Polymorphic string literals
+  - OverloadedStrings
+  # Simple extensions to aid type annotation
+  - ScopedTypeVariables
+  - TypeApplications
+  # Simple extensions to the Haskell type system
+  - ConstraintKinds
+  - RankNTypes
+  # Intermediate syntactic adjustments
+  - ApplicativeDo
+  - DefaultSignatures
+  - PatternSynonyms
+  # Intermediate extensions to the Haskell type system
+  - ExistentialQuantification
+  - FunctionalDependencies
+  - GADTs
+  # Advanced extensions to the Haskell type system
+  - DataKinds
+  - TypeFamilies
+  - TypeFamilyDependencies
+
+  # Other required by libraries
+  - QuasiQuotes
+
+  # for aeson
+  - TemplateHaskell
+
+  # to get constructor name
+  - DeriveDataTypeable
+
+name: just-json-server
+version: 0.1.0.0-alpha
+extra-source-files:
+  - README.md
+  - ChangeLog.md
+author: chauchakching
+github: chauchakching/just-json-server
+license: MIT
+executables:
+  just-json-server:
+    source-dirs: app
+    main: Main.hs
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - just-json-server
+description: Please see the README on GitHub at <https://github.com/githubuser/just-json-server#readme>
