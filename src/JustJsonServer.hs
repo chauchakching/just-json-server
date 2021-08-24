@@ -39,6 +39,7 @@ port = 3000
 
 runJustJsonServer :: IO ()
 runJustJsonServer = do
+  printWelcomeMessage
   putStrLn $ "starting json server at localhost:" ++ show port ++ " ..."
   let opts = info (argsParser <**> helper) (fullDesc <> progDesc "hey there" <> header "json server")
   commandArgs <- execParser opts
@@ -180,3 +181,10 @@ getTargetFilePath filename = do
 
 (!!?) :: [a] -> Int -> Maybe a
 (!!?) xs n = L.headMaybe $ L.drop n xs
+
+printWelcomeMessage :: IO ()
+printWelcomeMessage = do
+  putStrLn "\n"
+  putStrLn "------------------------------"
+  putStrLn "|      just-json-server      |"
+  putStrLn "------------------------------"
