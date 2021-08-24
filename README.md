@@ -65,6 +65,10 @@ PUT /articles/1
 DELETE /articles/1
 ```
 
+## Development
+
+Start api server with [steeloverseer](https://github.com/schell/steeloverseer) to watch file changes and restart automatically
+
 ## Notes
 
 CI scripts referenced from [purescript](https://github.com/purescript/purescript)
