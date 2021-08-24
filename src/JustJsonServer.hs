@@ -139,8 +139,6 @@ getResourceData resource (Model hashmap) = HMap.lookupDefault [] resource hashma
 
 checkJsonResources :: CommandArgs -> IO [T.Text]
 checkJsonResources args = do
-  putStrLn $ "command arguments: " ++ show args
-
   filePath <- getTargetFilePath $ jsonFilename args
   content <- LB.readFile filePath
   let maybeModel = decode content :: Maybe Model
