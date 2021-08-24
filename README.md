@@ -31,8 +31,7 @@ Create a json file with name, say `db.json`
       "id": 1,
       "title": "post 1"
     }
-  ],
-  
+  ]
 }
 ```
 
