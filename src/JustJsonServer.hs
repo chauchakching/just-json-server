@@ -1,4 +1,4 @@
-module JustJsonServer where
+module JustJsonServer (runJustJsonServer) where
 
 import Control.Applicative (Alternative ((<|>)))
 import Data.Aeson (Array, FromJSON (..), Object, Result (..), Value (..), decode, eitherDecode, encode, withObject, (.:))
