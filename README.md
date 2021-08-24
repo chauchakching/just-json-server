@@ -72,3 +72,18 @@ Start api server with [steeloverseer](https://github.com/schell/steeloverseer) t
 ## Notes
 
 CI scripts referenced from [purescript](https://github.com/purescript/purescript)
+
+## Why?
+
+Because Haskell rocks!
+
+This kind of json api server is super easy to implement in dynamic languages such as Nodejs. See [json-server](https://github.com/typicode/json-server). Nonetheless, it's a very good way to practice writing Haskell code by re-implementing existing libraries. 
+
+During development, the only bugs I got were
+
+- accidentally passing resource name value (string) instead of resource id (also string) to some function
+- list calculation `replaceOrInsertElem`, which have to be verified by test cases
+
+Other than that, when the program compiles, it is correct.
+
+Performance-wise, re-implementing it with Haskell is rediculous, because the performance should be bounded by IO of the json file.
