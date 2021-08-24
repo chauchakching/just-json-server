@@ -64,3 +64,7 @@ PUT /articles/1
 # delete
 DELETE /articles/1
 ```
+
+## Notes
+
+CI scripts referenced from [purescript](https://github.com/purescript/purescript)
