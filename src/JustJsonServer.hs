@@ -14,6 +14,7 @@ import qualified Data.Map as Map
 import qualified Data.Text as T
 import Data.Text.Lazy.Encoding (encodeUtf8)
 import GHC.Generics (Generic)
+import MyUtil (replaceOrInsertElem)
 import Network.HTTP.Types (Method, methodDelete, methodGet, methodPatch, methodPost, methodPut, status200, status201, status400, status404)
 import Network.Wai (Application, Request (pathInfo, requestBody, requestMethod), Response, ResponseReceived, responseLBS, strictRequestBody)
 import Network.Wai.Handler.Warp (run)
@@ -109,12 +110,6 @@ handler commandArgs method body (Just resource) (Just reqResourceId)
         writeJsonData (jsonFilename commandArgs) updatedModel
         return $ responseLBS status200 [] ""
   | otherwise = return response404
-
-replaceOrInsertElem :: a -> (a -> Bool) -> [a] -> [a]
-replaceOrInsertElem x f xs = firstHalf ++ [x] ++ drop 1 secondHalf
-  where
-    (firstHalf, secondHalf) = splitAt (fromMaybe (length xs) maybeIndex) xs
-    maybeIndex = findIndex f xs
 
 response404 :: Response
 response404 = responseLBS status404 [] "Not Found"
