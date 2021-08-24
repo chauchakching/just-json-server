@@ -2,6 +2,14 @@
 
 Command to run a API server supporting CRUD with just a json file.
 
+## Prerequisite
+
+Executables can be found on [github release](https://github.com/chauchakching/just-json-server/releases) page
+
+### Build from source
+
+Haskell build tool `stack`
+
 ## Getting started
 
 Create a json file with name, say `db.json`
