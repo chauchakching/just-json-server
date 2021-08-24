@@ -11,8 +11,7 @@ tests:
     dependencies:
       - just-json-server
       
-copyright: 2019 Author name here
-maintainer: example@example.com
+copyright: 2021 chauchakching
 dependencies:
   - base >= 4.7 && < 5
   - text
@@ -109,4 +108,4 @@ executables:
       - -with-rtsopts=-N
     dependencies:
       - just-json-server
-description: Please see the README on GitHub at <https://github.com/githubuser/just-json-server#readme>
+description: Please see the README on GitHub at <https://github.com/chauchakching/just-json-server#readme>

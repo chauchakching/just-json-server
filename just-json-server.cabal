@@ -4,16 +4,16 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 255c1d5fb54bacc4b3dec9c6c00efd38aae91a80b164acae8f874725c7b53e3a
+-- hash: 31d405e9c481494458224d1e27303381712ea5d1df110e5c32a304b38c40286f
 
 name:           just-json-server
 version:        0.1.0.0-alpha
-description:    Please see the README on GitHub at <https://github.com/githubuser/just-json-server#readme>
+description:    Please see the README on GitHub at <https://github.com/chauchakching/just-json-server#readme>
 homepage:       https://github.com/chauchakching/just-json-server#readme
 bug-reports:    https://github.com/chauchakching/just-json-server/issues
 author:         chauchakching
-maintainer:     example@example.com
-copyright:      2019 Author name here
+maintainer:     chauchakching
+copyright:      2021 chauchakching
 license:        MIT
 license-file:   LICENSE
 build-type:     Simple
