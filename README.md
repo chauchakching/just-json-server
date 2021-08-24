@@ -39,18 +39,29 @@ Create a json file with name, say `db.json`
 Then, build and start an API server
 
 ```bash
+# build from source code
 stack build
 
+# run the executable
 stack exec just-json-server db.json
 ```
 
 which supports CRUD operations on the given data, e.g.
 
-```
+```bash
+# get all
 GET /articles
+
+# get one
 GET /articles/1
+
+# create
 POST /articles
+
+# update
 PATCH /articles/1
 PUT /articles/1
+
+# delete
 DELETE /articles/1
 ```
