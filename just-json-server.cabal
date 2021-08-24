@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d7507de5dde1cd3d1353e91ac7bd58d5482533f27323171889c31537baddb306
+-- hash: 255c1d5fb54bacc4b3dec9c6c00efd38aae91a80b164acae8f874725c7b53e3a
 
 name:           just-json-server
 version:        0.1.0.0-alpha
@@ -45,8 +45,6 @@ library
     , filepath
     , hspec
     , http-types
-    , lens
-    , lens-aeson
     , optparse-applicative
     , pretty-show
     , rio
@@ -79,8 +77,6 @@ executable just-json-server
     , hspec
     , http-types
     , just-json-server
-    , lens
-    , lens-aeson
     , optparse-applicative
     , pretty-show
     , rio
@@ -114,8 +110,6 @@ test-suite just-json-server-test
     , hspec
     , http-types
     , just-json-server
-    , lens
-    , lens-aeson
     , optparse-applicative
     , pretty-show
     , rio
