@@ -35,9 +35,11 @@ newtype Model = Model (HashMap T.Text [Object])
 
 $(deriveJSON defaultOptions ''Model)
 
+port = 3000
+
 runJustJsonServer :: IO ()
 runJustJsonServer = do
-  putStrLn "starting json server..."
+  putStrLn $ "starting json server at localhost:" ++ show port ++ " ..."
   let opts = info (argsParser <**> helper) (fullDesc <> progDesc "hey there" <> header "json server")
   commandArgs <- execParser opts
   jsonResources <- checkJsonResources commandArgs
@@ -47,7 +49,7 @@ runJustJsonServer = do
         let (method, entity, entityId) = (requestMethod req, (!!? 0) $ pathInfo req, (!!? 1) $ pathInfo req)
         body <- strictRequestBody req
         respond =<< handler commandArgs method body entity entityId
-  run 3000 app
+  run port app
 
 handler :: CommandArgs -> Method -> ByteString -> Maybe T.Text -> Maybe T.Text -> IO Response
 handler commandArgs _ _ Nothing _ = return $ responseLBS status200 [] "Hello World"
